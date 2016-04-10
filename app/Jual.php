@@ -8,4 +8,5 @@ class Jual extends Model
 {
     protected $connection = "mysql";
     protected $table = "jual";
+    public $timestamps = false;
 }

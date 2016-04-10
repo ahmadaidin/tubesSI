@@ -8,4 +8,5 @@ class Setor extends Model
 {
     protected $connection = "mysql";
     protected $table = "setor";
+    public $timestamps = false;
 }

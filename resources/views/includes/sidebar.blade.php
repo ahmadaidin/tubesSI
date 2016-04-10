@@ -28,8 +28,8 @@
             <li><a href="/cabang"><i class="fa fa-home"></i> Bank Sampah</a></li>
             <li><a href="/nasabah"><i class="fa fa-child"></i> Nasabah</a></li>
             <li><a href="/item"><i class="fa fa-archive"></i> Item</a></li>
-            <li><a href="/penyetoran"><i class="fa fa-book"></i> Penyetoran</a></li>
-            <li><a href="/penjualan"><i class="fa fa-money"></i> Penjualan</a></li>
+            <li><a href="/setor"><i class="fa fa-book"></i> Penyetoran</a></li>
+            <li><a href="/jual"><i class="fa fa-money"></i> Penjualan</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

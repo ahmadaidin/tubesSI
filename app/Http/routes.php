@@ -18,3 +18,7 @@ Route::get('/nasabah', 'NasabahController@listNasabah');
 Route::post('/nasabah', 'NasabahController@addNasabah');
 Route::get('/item', 'ItemController@listItem');
 Route::post('/item', 'ItemController@addItem');
+Route::get('/setor', 'SetorController@listSetor');
+Route::post('/setor', 'SetorController@addSetor');
+Route::get('/jual', 'JualController@listJual');
+Route::post('/jual', 'JualController@addJual');
