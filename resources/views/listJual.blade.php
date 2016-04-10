@@ -30,7 +30,7 @@
                           <td>{{ $jual_item->nama_item }}</td>
                           <td>{{ $jual_item->berat }} kg</td>
                           <td>Rp {{ $jual_item->harga }}</td>
-                          <td>{{ $jual_item->tanggal }}</td>
+                          <td>{{date('d F Y', strtotime($jual_item->tanggal))}}</td>
                         </tr>
                       @endforeach
                     </tbody>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group">
                       <label for="inputNama">Tanggal Penyetoran</label>
-                      <input name="tanggal" type="text" class="form-control" id="inputNama" placeholder="masukkan tanggal penyetoran">
+                      <input name="tanggal" type="date" class="form-control" id="inputNama" placeholder="masukkan tanggal penyetoran">
                     </div>
                   </div><!-- /.box-body -->
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
