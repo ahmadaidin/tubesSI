@@ -6,7 +6,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Hover Data Table</h3>
+                  <h3 class="box-title">Daftar Cabang</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-hover">
@@ -15,35 +15,31 @@
                         <th>No</th>
                         <th>ID</th>
                         <th>Nama</th>
+                        <th>Kecamatan</th>
                         <th>Kelurahan</th>
                         <th>RW</th>
                         <th>RT</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0</td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Other browsers</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>U</td>
-                        <td>X</td>
-                      </tr>
+                      @foreach ($cabang as $cabang_item)
+                        <tr>
+                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->nama }}</td>
+                        </tr>
+                      @endforeach
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>No</th>
                         <th>ID</th>
                         <th>Nama</th>
+                        <th>Kecamatan</th>
                         <th>Kelurahan</th>
                         <th>RW</th>
                         <th>RT</th>
@@ -51,6 +47,45 @@
                     </tfoot>
                   </table>
                 </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Cabang Baru</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputId">ID Cabang</label>
+                      <input type="text" class="form-control" id="inputId" placeholder="masukkan id cabang">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputNama">Nama Cabang</label>
+                      <input type="text" class="form-control" id="inputNama" placeholder="masukkan nama cabang">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputKecamatan">Kecamatan</label>
+                      <input type="text" class="form-control" id="inputKecamatan" placeholder="masukkan kecamatan">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputKelurahan">Kelurahan</label>
+                      <input type="text" class="form-control" id="inputKelurahan" placeholder="masukkan kelurahan">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputRW">RW</label>
+                      <input type="text" class="form-control" id="inputRW" placeholder="masukkan rw">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputRT">RT</label>
+                      <input type="text" class="form-control" id="inputRT" placeholder="masukkan rt">
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                  </div>
+                </form>
               </div><!-- /.box -->
             </div><!-- /.col -->
           </div><!-- /.row -->

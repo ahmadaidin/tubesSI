@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Cabang;
+
 class CabangController extends Controller
 {
     function listCabang()
@@ -13,6 +15,8 @@ class CabangController extends Controller
         //$cabang = 
         
         //return view('listlowongan', compact('lowongan','status'));
-    	return view('listCabang');
+    	
+    	$cabang = Cabang::get();
+    	return view('listCabang', compact('cabang'));
     }
 }
