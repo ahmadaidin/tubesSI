@@ -8,4 +8,5 @@ class Cabang extends Model
 {
     protected $connection = "mysql";
     protected $table = "cabang";
+    public $timestamps = false;
 }

@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'CabangController@listCabang');
+Route::get('/', function (){return redirect('/cabang');});
+Route::get('/cabang', 'CabangController@listCabang');
+Route::post('/cabang', 'CabangController@addCabang');

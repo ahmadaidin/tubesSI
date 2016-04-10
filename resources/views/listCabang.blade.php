@@ -6,14 +6,14 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Daftar Cabang</h3>
+                  <h3 class="box-title">Daftar Bank Sampah</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>ID</th>
+                        <th>Nomor Registrasi</th>
                         <th>Nama</th>
                         <th>Kecamatan</th>
                         <th>Kelurahan</th>
@@ -22,22 +22,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($cabang as $cabang_item)
+                      @foreach ($cabang as $index => $cabang_item)
                         <tr>
+                          <td>{{ $index + 1 }}</td>
+                          <td>{{ $cabang_item->nomor_registrasi }}</td>
                           <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->nama }}</td>
+                          <td>{{ $cabang_item->kecamatan }}</td>
+                          <td>{{ $cabang_item->kelurahan }}</td>
+                          <td>{{ $cabang_item->rw }}</td>
+                          <td>{{ $cabang_item->rt }}</td>
                         </tr>
                       @endforeach
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>No</th>
-                        <th>ID</th>
+                        <th>Nomor Registrasi</th>
                         <th>Nama</th>
                         <th>Kecamatan</th>
                         <th>Kelurahan</th>
@@ -51,37 +51,37 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Cabang Baru</h3>
+                  <h3 class="box-title">Bank Sampah Baru</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form method="POST" action="{{ url('/') }}" role="form">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputId">ID Cabang</label>
-                      <input type="text" class="form-control" id="inputId" placeholder="masukkan id cabang">
+                      <label for="inputId">Nomor Registrasi</label>
+                      <input name="id" type="text" class="form-control" id="inputId" placeholder="masukkan nomor registrasi">
                     </div>
                     <div class="form-group">
-                      <label for="inputNama">Nama Cabang</label>
-                      <input type="text" class="form-control" id="inputNama" placeholder="masukkan nama cabang">
+                      <label for="inputNama">Nama Bank Sampah</label>
+                      <input name="nama" type="text" class="form-control" id="inputNama" placeholder="masukkan nama bank sampah">
                     </div>
                     <div class="form-group">
                       <label for="inputKecamatan">Kecamatan</label>
-                      <input type="text" class="form-control" id="inputKecamatan" placeholder="masukkan kecamatan">
+                      <input name="kecamatan" type="text" class="form-control" id="inputKecamatan" placeholder="masukkan kecamatan">
                     </div>
                     <div class="form-group">
                       <label for="inputKelurahan">Kelurahan</label>
-                      <input type="text" class="form-control" id="inputKelurahan" placeholder="masukkan kelurahan">
+                      <input name="kelurahan" type="text" class="form-control" id="inputKelurahan" placeholder="masukkan kelurahan">
                     </div>
                     <div class="form-group">
                       <label for="inputRW">RW</label>
-                      <input type="text" class="form-control" id="inputRW" placeholder="masukkan rw">
+                      <input name="rw" type="text" class="form-control" id="inputRW" placeholder="masukkan rw">
                     </div>
                     <div class="form-group">
                       <label for="inputRT">RT</label>
-                      <input type="text" class="form-control" id="inputRT" placeholder="masukkan rt">
+                      <input name="rt" type="text" class="form-control" id="inputRT" placeholder="masukkan rt">
                     </div>
                   </div><!-- /.box-body -->
-
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Tambah</button>
                   </div>
