@@ -14,3 +14,7 @@
 Route::get('/', function (){return redirect('/cabang');});
 Route::get('/cabang', 'CabangController@listCabang');
 Route::post('/cabang', 'CabangController@addCabang');
+Route::get('/nasabah', 'NasabahController@listNasabah');
+Route::post('/nasabah', 'NasabahController@addNasabah');
+Route::get('/item', 'ItemController@listItem');
+Route::post('/item', 'ItemController@addItem');

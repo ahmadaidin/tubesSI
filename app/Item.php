@@ -8,4 +8,5 @@ class Item extends Model
 {
     protected $connection = "mysql";
     protected $table = "item";
+    public $timestamps = false;
 }
