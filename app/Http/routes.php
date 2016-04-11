@@ -26,3 +26,7 @@ Route::get('/statistics', function(){
     return redirect('/statistics/penyetoran');
 });
 Route::match(array('GET', 'POST'), '/statistics/penyetoran', 'StatisticsController@getStatistikPenyetoran');
+Route::get('/statistics', function(){
+    return redirect('/statistics/penjualan');
+});
+Route::match(array('GET', 'POST'), '/statistics/penjualan', 'StatisticsController@getStatistikPenjualan');
