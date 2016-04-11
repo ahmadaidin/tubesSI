@@ -30,8 +30,8 @@
       <button class="btn btn-block btn-success" id="filter">Submit</button>
     </div>
 </div>
-@include('statistics.massaJual')
 @include('statistics.penjualan')
+@include('statistics.massaJual')
 @include('statistics.uangJual')
 <script>
   $(function () {

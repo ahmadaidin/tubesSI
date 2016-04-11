@@ -4,7 +4,7 @@
             <div class="col-xs-12">
               <div class="box box-info">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Statistik jumlah transaksi penyetoran per minggu</h3>
+                    <h3 class="box-title">Statistik jumlah transaksi penjualan per minggu</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                       <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
