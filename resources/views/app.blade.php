@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE 2 | Dashboard</title>
+        <title>Bank Sampah Pak Sugiri | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
         <link href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -65,7 +65,7 @@
         </div><!-- ./wrapper -->
  
         <!-- jQuery 2.1.3 -->
-        <script src="{{ asset('/plugins/jQuery/jQuery-2.1.3.min.js') }}"></script>
+        <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
         <!-- jQuery UI 1.11.2 -->
         <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

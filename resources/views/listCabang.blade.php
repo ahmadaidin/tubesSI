@@ -19,6 +19,8 @@
                         <th>Kelurahan</th>
                         <th>RW</th>
                         <th>RT</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -31,6 +33,17 @@
                           <td>{{ $cabang_item->kelurahan }}</td>
                           <td>{{ $cabang_item->rw }}</td>
                           <td>{{ $cabang_item->rt }}</td>
+                          <td class="tools">
+                            <!-- Trigger the modal with a button -->
+                            <a href="#">
+                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
+                            </a>
+                          </td>
+                          <td class="tools">
+                           <a href="#">
+                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal"></span>
+                            </a>
+                          </td>
                         </tr>
                       @endforeach
                     </tbody>
@@ -43,11 +56,51 @@
                         <th>Kelurahan</th>
                         <th>RW</th>
                         <th>RT</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </tfoot>
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+
+              <!--Edit Modal -->
+              <div id="editModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Edit Cabang</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>bikin form disini</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Delete Modal -->
+              <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Hapus Cabang</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>konfirmasi penghapusan</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
