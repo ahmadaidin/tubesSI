@@ -22,3 +22,7 @@ Route::get('/setor', 'SetorController@listSetor');
 Route::post('/setor', 'SetorController@addSetor');
 Route::get('/jual', 'JualController@listJual');
 Route::post('/jual', 'JualController@addJual');
+Route::get('/statistics', function(){
+    return redirect('/statistics/penyetoran');
+});
+Route::match(array('GET', 'POST'), '/statistics/penyetoran', 'StatisticsController@getStatistikPenyetoran');

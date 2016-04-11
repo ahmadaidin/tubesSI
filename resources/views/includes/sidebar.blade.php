@@ -30,6 +30,8 @@
             <li><a href="/item"><i class="fa fa-archive"></i> Item</a></li>
             <li><a href="/setor"><i class="fa fa-book"></i> Penyetoran</a></li>
             <li><a href="/jual"><i class="fa fa-money"></i> Penjualan</a></li>
+            <li><a href="/statistics/penyetoran"><i class="fa fa-bar-chart"></i>Statistik Penyetoran</a></li>
+            <li><a href="/statistics/penjualan"><i class="fa fa-bar-chart"></i>Statistik Penjualan</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->
