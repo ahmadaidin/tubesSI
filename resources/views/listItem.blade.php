@@ -14,6 +14,8 @@
                       <tr>
                         <th>No</th>
                         <th>Nama Jenis Sampah</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -21,13 +23,87 @@
                         <tr>
                           <td>{{ $index + 1 }}</td>
                           <td>{{ $item_item->nama }}</td>
+                          <td class="tools">
+                            <!-- Trigger the modal with a button -->
+                            <a href="#">
+                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
+                            </a>
+                          </td>
+                          <td class="tools">
+                           <a href="#">
+                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal"></span>
+                            </a>
+                          </td>
                         </tr>
+
+
+                        <!--Edit Modal -->
+                      <div id="editModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Edit Item</h4>
+                            </div>
+                            <div class="modal-body">
+                             <form method="POST" action="{{ url('/item') }}" role="form">
+                              <input name="_method" type="hidden" value="PUT">
+                              <input name="nama_lama" type="hidden" value="{{ $item_item->nama }}">
+                              <div class="box-body">
+                                <div class="form-group">
+                                  <label for="inputNama">Nama Item</label>
+                                  <input name="nama_baru" type="text" class="form-control" id="inputNama" value="{{ $item_item->nama }}">
+                                </div>
+                              </div><!-- /.box-body -->
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                              </div>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Delete Modal -->
+                      <div id="deleteModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Perhatian !!!</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Jika anda menghapus item ini, semua data penjualan dan penyetoran sampah jenis {{$item_item->nama}} akan dihapus </p>
+                              <p>Apakah anda yakin ingin menghapus item {{$item_item->nama}} ?</p>
+                            </div>
+                            <div class="modal-footer">
+                            
+                              <form method="POST" action="{{ url('/item') }}" role="form">
+                                <input name="_method" type="hidden" value="DELETE">
+                                <input name="nama" type="hidden" value="{{ $item_item->nama }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="box-footer">
+                                  <button type="submit" class="btn btn-danger">Hapus</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                </div>
+                              </form>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       @endforeach
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>No</th>
                         <th>Nama Jenis Sampah</th>
+                         <th></th>
+                        <th></th>
                       </tr>
                     </tfoot>
                   </table>

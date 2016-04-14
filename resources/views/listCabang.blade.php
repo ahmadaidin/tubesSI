@@ -45,6 +45,82 @@
                             </a>
                           </td>
                         </tr>
+
+                        <!--Edit Modal -->
+                      <div id="editModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Edit Cabang</h4>
+                            </div>
+                            <div class="modal-body">
+                             <form method="POST" action="{{ url('/cabang') }}" role="form">
+                              <input name="_method" type="hidden" value="PUT">
+                              <input name="nomor_registrasi" type="hidden" value="{{ $cabang_item->nomor_registrasi }}">
+                              <div class="box-body">
+                                <div class="form-group">
+                                  <label for="inputNama">Nama Bank Sampah</label>
+                                  <input name="nama" type="text" class="form-control" id="inputNama" value="{{ $cabang_item->nama }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="inputKecamatan">Kecamatan</label>
+                                  <input name="kecamatan" type="text" class="form-control" id="inputKecamatan" value="{{ $cabang_item->kecamatan }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="inputKelurahan">Kelurahan</label>
+                                  <input name="kelurahan" type="text" class="form-control" id="inputKelurahan" value="{{ $cabang_item->kelurahan }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="inputRW">RW</label>
+                                  <input name="rw" type="text" class="form-control" id="inputRW" value="{{ $cabang_item->rw }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="inputRT">RT</label>
+                                  <input name="rt" type="text" class="form-control" id="inputRT" value="{{ $cabang_item->rt }}">
+                                </div>
+                              </div><!-- /.box-body -->
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                              </div>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Delete Modal -->
+                      <div id="deleteModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Perhatian !!!</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Jika anda menghapus cabang ini, semua data nasabah, penjualan dan penyetoran sampah pada cabang {{$cabang_item->nama}} akan dihapus </p>
+                              <p>Apakah anda yakin ingin menghapus cabang {{$cabang_item->nama}} ?</p>
+                            </div>
+                            <div class="modal-footer">
+                            
+                              <form method="POST" action="{{ url('/cabang') }}" role="form">
+                                <input name="_method" type="hidden" value="DELETE">
+                                <input name="nomor_registrasi" type="hidden" value="{{ $cabang_item->nomor_registrasi }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="box-footer">
+                                  <button type="submit" class="btn btn-danger">Hapus</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                </div>
+                              </form>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       @endforeach
                     </tbody>
                     <tfoot>
@@ -64,43 +140,7 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
-              <!--Edit Modal -->
-              <div id="editModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Edit Cabang</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>bikin form disini</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--Delete Modal -->
-              <div id="deleteModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Hapus Cabang</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>konfirmasi penghapusan</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">

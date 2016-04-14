@@ -19,6 +19,8 @@
                         <th>Berat Sampah</th>
                         <th>Total Harga</th>
                         <th>Tanggal Penyetoran</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -31,7 +33,84 @@
                           <td>{{ $setor_item->berat }} kg</td>
                           <td>Rp {{ $setor_item->harga }}</td>
                           <td>{{date('d F Y', strtotime($setor_item->tanggal))}}</td>
+                          <td class="tools">
+                            <!-- Trigger the modal with a button -->
+                            <a href="#">
+                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
+                            </a>
+                          </td>
+                          <td class="tools">
+                           <a href="#">
+                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal"></span>
+                            </a>
+                          </td>
                         </tr>
+                           <!--Edit Modal -->
+                          <div id="editModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Edit Penyetoran</h4>
+                                </div>
+                                <div class="modal-body">
+                                 <form method="POST" action="{{ url('/setor') }}" role="form">
+                                  <input name="_method" type="hidden" value="PUT">
+                                  <input name="id" type="hidden" value="{{ $setor_item->id }}">
+                                  <div class="box-body">
+                                    
+                                    <div class="form-group">
+                                      <label for="inputId">Bank Sampah</label>
+                                      <select name="id_cabang" class="form-control m-b">
+                                         <option value="{{ $setor_item->id_cabang }}">{{ $cabang_item->nama }}</option>
+                                        @foreach ($cabang as $cabang_item)
+                                        <option value="{{ $cabang_item->nomor_registrasi }}">{{ $cabang_item->nama }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="inputId">Nasabah</label>
+                                      <select name="nama_nasabah" class="form-control m-b">
+                                        @foreach ($nasabah as $nasabah_item)
+                                        <option value="{{ $nasabah_item->nama }}">{{ $nasabah_item->nama }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputId">Jenis Sampah</label>
+                                      <select name="nama_item" class="form-control m-b">
+                                        @foreach ($item as $item_item)
+                                        <option value="{{ $item_item->nama }}">{{ $item_item->nama }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Berat Sampah (kg)</label>
+                                      <input name="berat" type="text" class="form-control" id="inputNama" placeholder="masukkan berat sampah">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Total Harga (Rp)</label>
+                                      <input name="harga" type="text" class="form-control" id="inputNama" placeholder="masukkan total harga">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Tanggal Penyetoran</label>
+                                      <input name="tanggal" type="date" class="form-control" id="inputNama" placeholder="masukkan tanggal penyetoran">
+                                    </div>
+                                  </div><!-- /.box-body -->
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                  </div>
+                                </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        
                       @endforeach
                     </tbody>
                     <tfoot>
@@ -43,6 +122,8 @@
                         <th>Berat Sampah</th>
                         <th>Total Harga </th>
                         <th>Tanggal Penyetoran</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </tfoot>
                   </table>

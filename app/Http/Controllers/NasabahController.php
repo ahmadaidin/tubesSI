@@ -16,7 +16,14 @@ class NasabahController extends Controller
     {   
     	$nasabah = Nasabah::get();
     	$cabang = Cabang::get();
-    	return view('listNasabah', compact('nasabah', 'cabang'));
+        $current_cabang = array();
+        foreach ($nasabah as $index => $nasabah_item) {
+            $key=$nasabah_item->id_cabang;
+            $cab=Cabang::find($key);
+            $value=$cab->nama;
+            $current_cabang[$key] = $value;
+        }
+    	return view('listNasabah', compact('nasabah', 'cabang','current_cabang'));
     }
 
     function addNasabah(Request $request)
@@ -27,4 +34,20 @@ class NasabahController extends Controller
         $nasabah->save();
         return redirect('/nasabah');
     }
+
+    function editNasabah(Request $request)
+    {
+        $nasabah = Nasabah::find($request->input('nama_lama'))->first();
+        $nasabah->nama = $request->input('nama_baru');
+        $nasabah->save();
+        return redirect('/nasabah');
+    }
+    
+    function deleteNasabah(Request $request)
+    {
+        $nasabah=Nasabah::find($request->input('nama'));
+        $nasabah->delete();
+        return redirect('/nasabah');
+    }  
+
 }
