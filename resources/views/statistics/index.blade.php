@@ -1,4 +1,15 @@
 @extends('app')
+
+@section('content-header')
+<section class="content-header">
+    <h1>Statistik Penyetoran</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Statistik Penyetoran</li>
+    </ol>
+</section>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-sm-4">
@@ -36,6 +47,10 @@
 @include('statistics.uang')
 <script>
   $(function () {
+    $('.sidebar-menu a').filter(function() {
+        return $(this).text() == $('.content-header h1').text();
+    }).closest('li').addClass('active')
+    
     $("#cabang option[data-id='{{ $default_cabang }}']").prop('selected', true);
 
     var startDate, endDate

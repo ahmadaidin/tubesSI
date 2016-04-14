@@ -1,4 +1,15 @@
 @extends('app')
+
+@section('content-header')
+<section class="content-header">
+    <h1>Item</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Item</li>
+    </ol>
+</section>
+@endsection
+
 @section('content')
 <!-- Main content -->
         <section class="content">
@@ -149,6 +160,10 @@
     <!-- page script -->
     <script>
       $(function () {
+        $('.sidebar-menu a').filter(function() {
+            return $(this).text() == $('.content-header h1').text();
+        }).closest('li').addClass('active')
+
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,

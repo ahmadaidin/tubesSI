@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Bank Sampah Pak Sugiri | Dashboard</title>
+        <title>Bank Sampah Pak Sugiri</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
         <link href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -41,26 +41,14 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                    Dashboard
-                    <small>Control panel</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
-                </section>
+                @yield('content-header')
                 <!-- Main content -->
                 <section class="content">
                     @yield('content')
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
             <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.0
-                </div>
-                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2014-2015 KangPilah.</strong> All rights reserved.
             </footer>
         </div><!-- ./wrapper -->
  
