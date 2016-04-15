@@ -30,19 +30,119 @@
                         <th>Berat Sampah</th>
                         <th>Total Harga</th>
                         <th>Tanggal Jual</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($jual as $index => $jual_item)
                         <tr>
                           <td>{{ $index + 1 }}</td>
-                          <td>{{ $jual_item->id_cabang }}</td>
+                          <td>{{ $current_cabang[$jual_item->id_cabang] }}</td>
                           <td>{{ $jual_item->pengepul }}</td>
                           <td>{{ $jual_item->nama_item }}</td>
                           <td>{{ $jual_item->berat }} kg</td>
-                          <td>Rp {{ $jual_item->harga }}</td>
+                          <td>Rp {{ $jual_item->harga }}</td> 
                           <td>{{date('d F Y', strtotime($jual_item->tanggal))}}</td>
+                          <td class="tools">
+                            <!-- Trigger the modal with a button -->
+                            <a href="#">
+                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal{{ $index + 1 }}"></span>
+                            </a>
+                          </td>
+                          <td class="tools">
+                           <a href="#">
+                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal{{ $index + 1 }}"></span>
+                            </a>
+                          </td>
                         </tr>
+                        <!--Edit Modal -->
+                          <div id="editModal{{ $index + 1 }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Edit Penyetoran</h4>
+                                </div>
+                                <div class="modal-body">
+                                 <form method="POST" action="{{ url('/jual') }}" role="form">
+                                  <input name="_method" type="hidden" value="PUT">
+                                  <input name="id" type="hidden" value="{{ $jual_item->id }}">
+                                  <div class="box-body">
+                                    <div class="form-group">
+                                      <label for="inputId">Bank Sampah</label>
+                                      <select name="id_cabang" class="form-control m-b">
+                                        <option value="{{ $jual_item->id_cabang }}">{{ $current_cabang[$jual_item->id_cabang] }}</option>
+                                        @foreach ($cabang as $cabang_item)
+                                        <option value="{{ $cabang_item->nomor_registrasi }}">{{ $cabang_item->nama }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Pengepul</label>
+                                      <input name="pengepul" type="text" class="form-control" id="inputNama" value="{{ $jual_item->pengepul }}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputId">Jenis Sampah</label>
+                                      <select name="nama_item" class="form-control m-b">
+                                        <option value="{{ $jual_item->nama_item }}">{{ $jual_item->nama_item }}</option>
+                                        @foreach ($item as $item_item)
+                                        <option value="{{ $item_item->nama }}">{{ $item_item->nama }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Berat Sampah (kg)</label>
+                                      <input name="berat" type="text" class="form-control" id="inputNama" value="{{ $jual_item->berat }}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Total Harga (Rp)</label>
+                                      <input name="harga" type="text" class="form-control" id="inputNama" value="{{ $jual_item->harga }}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputNama">Tanggal Penyetoran</label>
+                                      <input name="tanggal" type="date" class="form-control" id="inputNama" value="{{ $jual_item->tanggal }}">
+                                    </div>
+                                  </div><!-- /.box-body -->
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                  </div>
+                                </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                         <!--Delete Modal -->
+                        <div id="deleteModal{{ $index + 1 }}" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Perhatian !!!</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p>Apakah anda yakin ingin menghapus data penjualan ini?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <form method="POST" action="{{ url('/jual') }}" role="form">
+                                  <input name="_method" type="hidden" value="DELETE">
+                                  <input name="id" type="hidden" value="{{ $jual_item->id }}">
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <div class="box-footer">
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                  </div>
+                                </form>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       @endforeach
                     </tbody>
                     <tfoot>
@@ -54,6 +154,8 @@
                         <th>Berat Sampah</th>
                         <th>Total Harga</th>
                         <th>Tanggal Jual</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </tfoot>
                   </table>

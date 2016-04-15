@@ -30,6 +30,7 @@ class NasabahController extends Controller
     {   
     	$nasabah = new Nasabah;
         $nasabah->id_cabang = $request->input('id_cabang');
+        $nasabah->nomor_induk = $request->input('nomor_induk');
         $nasabah->nama = $request->input('nama');
         $nasabah->save();
         return redirect('/nasabah');
@@ -37,8 +38,9 @@ class NasabahController extends Controller
 
     function editNasabah(Request $request)
     {
-        $nasabah = Nasabah::find($request->input('nama_lama'))->first();
+        $nasabah = Nasabah::find($request->input('nama_lama'));
         $nasabah->nama = $request->input('nama_baru');
+        $nasabah->id_cabang = $request->input('id_cabang');
         $nasabah->save();
         return redirect('/nasabah');
     }

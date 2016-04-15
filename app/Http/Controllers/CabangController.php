@@ -21,22 +21,18 @@ class CabangController extends Controller
     	$cabang = new Cabang;
         $cabang->nomor_registrasi = $request->input('nomor_registrasi');
         $cabang->nama = $request->input('nama');
-        $cabang->kecamatan = $request->input('kecamatan');
         $cabang->kelurahan = $request->input('kelurahan');
         $cabang->rw = $request->input('rw');
-        $cabang->rt = $request->input('rt');
         $cabang->save();
         return redirect('/cabang');
     }
 
     function editCabang(Request $request)
     {
-        $cabang = Cabang::find($request->input('nomor_registrasi'))->first();
+        $cabang = Cabang::find($request->input('nomor_registrasi'));
         $cabang->nama = $request->input('nama');
-        $cabang->kecamatan = $request->input('kecamatan');
         $cabang->kelurahan = $request->input('kelurahan');
         $cabang->rw = $request->input('rw');
-        $cabang->rt = $request->input('rt');
         $cabang->save();
         return redirect('/cabang');
     }

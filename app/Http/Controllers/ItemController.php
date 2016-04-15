@@ -26,7 +26,7 @@ class ItemController extends Controller
 
     function editItem(Request $request)
     {
-        $item = Item::find($request->input('nama_lama'))->first();
+        $item = Item::find($request->input('nama_lama'));
         $item->nama = $request->input('nama_baru');
         $item->save();
         return redirect('/item');

@@ -31,19 +31,19 @@ USE homestead;
 CREATE TABLE `cabang` (
   `nomor_registrasi` varchar(5) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `kecamatan` varchar(25) NOT NULL,
   `kelurahan` varchar(25) NOT NULL,
-  `rw` varchar(5) NOT NULL,
-  `rt` varchar(5) NOT NULL
+  `rw` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cabang`
 --
 
-INSERT INTO `cabang` (`nomor_registrasi`, `nama`, `kecamatan`, `kelurahan`, `rw`, `rt`) VALUES
-('BS002', 'Teratai', 'Cibeunying Kidul', 'Sangkuriang', '002', '003'),
-('BS003', 'ASD', 'ASD', 'ASD', 'ASD', 'ASD');
+INSERT INTO `cabang` (`nomor_registrasi`, `nama`, `kelurahan`, `rw`) VALUES
+('BS001', 'Mawar', 'Sadang Serang', '15'),
+('BS002', 'Raflesia', 'Tamansari', '2'),
+('BS003', 'Anggrek', 'Dago', '12'),
+('BS004', 'Lili', 'Tamansari', '9');
 
 -- --------------------------------------------------------
 
@@ -62,6 +62,7 @@ CREATE TABLE `item` (
 INSERT INTO `item` (`nama`) VALUES
 ('Emberan'),
 ('Kaleng'),
+('Pakaian'),
 ('Plastik');
 
 -- --------------------------------------------------------
@@ -80,6 +81,13 @@ CREATE TABLE `jual` (
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jual`
+--
+
+INSERT INTO `jual` (`id`, `id_cabang`, `pengepul`, `nama_item`, `berat`, `harga`, `tanggal`) VALUES
+(1, 'BS001', 'Jiko', 'Pakaian', 78, 100, '2016-04-12');
+
 -- --------------------------------------------------------
 
 --
@@ -87,6 +95,7 @@ CREATE TABLE `jual` (
 --
 
 CREATE TABLE `nasabah` (
+  `nomor_induk` int(10) NOT NULL,
   `id_cabang` varchar(5) NOT NULL,
   `nama` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -95,11 +104,14 @@ CREATE TABLE `nasabah` (
 -- Dumping data for table `nasabah`
 --
 
-INSERT INTO `nasabah` (`id_cabang`, `nama`) VALUES
-('BS002', 'Elvan'),
-('BS002', 'Lilo'),
-('BS002', 'Mahar'),
-('BS003', 'Budi');
+INSERT INTO `nasabah` (`nomor_induk`, `id_cabang`, `nama`) VALUES
+(123, 'BS001', 'Bunga'),
+(2, 'BS002', 'Lilo'),
+(3, 'BS002', 'Mahar'),
+(5, 'BS002', 'Puji'),
+(4, 'BS003', 'Budi'),
+(0, 'BS003', 'Rudi'),
+(6, 'BS004', 'Joni');
 
 -- --------------------------------------------------------
 
@@ -122,8 +134,7 @@ CREATE TABLE `setor` (
 --
 
 INSERT INTO `setor` (`id`, `id_cabang`, `nama_nasabah`, `nama_item`, `berat`, `harga`, `tanggal`) VALUES
-(4, 'BS002', 'Elvan', 'Kaleng', 9, 40000, '2016-04-03'),
-(5, 'BS002', 'Lilo', 'Plastik', 6, 15000, '2016-04-08');
+(5, 'BS002', 'Lilo', 'Plastik', 62, 15000, '2016-04-08');
 
 --
 -- Indexes for dumped tables
@@ -172,12 +183,12 @@ ALTER TABLE `setor`
 -- AUTO_INCREMENT for table `jual`
 --
 ALTER TABLE `jual`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `setor`
 --
 ALTER TABLE `setor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --
@@ -199,8 +210,8 @@ ALTER TABLE `nasabah`
 -- Constraints for table `setor`
 --
 ALTER TABLE `setor`
-  ADD CONSTRAINT `setor_ibfk_1` FOREIGN KEY (`id_cabang`,`nama_nasabah`) REFERENCES `nasabah` (`id_cabang`, `nama`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `setor_ibfk_2` FOREIGN KEY (`nama_item`) REFERENCES `item` (`nama`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `setor_constraint1` FOREIGN KEY (`nama_item`) REFERENCES `item` (`nama`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `setor_constraint2` FOREIGN KEY (`id_cabang`) REFERENCES `nasabah` (`id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

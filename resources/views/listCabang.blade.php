@@ -1,15 +1,4 @@
 @extends('app')
-
-@section('content-header')
-<section class="content-header">
-    <h1>Bank Sampah</h1>
-    <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Bank Sampah</li>
-    </ol>
-</section>
-@endsection
-
 @section('content')
 <!-- Main content -->
         <section class="content">
@@ -26,10 +15,8 @@
                         <th>No</th>
                         <th>Nomor Registrasi</th>
                         <th>Nama</th>
-                        <th>Kecamatan</th>
                         <th>Kelurahan</th>
                         <th>RW</th>
-                        <th>RT</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -40,25 +27,24 @@
                           <td>{{ $index + 1 }}</td>
                           <td>{{ $cabang_item->nomor_registrasi }}</td>
                           <td>{{ $cabang_item->nama }}</td>
-                          <td>{{ $cabang_item->kecamatan }}</td>
                           <td>{{ $cabang_item->kelurahan }}</td>
                           <td>{{ $cabang_item->rw }}</td>
-                          <td>{{ $cabang_item->rt }}</td>
+
                           <td class="tools">
                             <!-- Trigger the modal with a button -->
                             <a href="#">
-                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
+                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal{{ $index + 1 }}"></span>
                             </a>
                           </td>
                           <td class="tools">
                            <a href="#">
-                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal"></span>
+                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal{{ $index + 1 }}"></span>
                             </a>
                           </td>
-                        </tr>
+                        
 
                         <!--Edit Modal -->
-                      <div id="editModal" class="modal fade" role="dialog">
+                      <div id="editModal{{ $index + 1 }}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
                           <div class="modal-content">
@@ -75,10 +61,7 @@
                                   <label for="inputNama">Nama Bank Sampah</label>
                                   <input name="nama" type="text" class="form-control" id="inputNama" value="{{ $cabang_item->nama }}">
                                 </div>
-                                <div class="form-group">
-                                  <label for="inputKecamatan">Kecamatan</label>
-                                  <input name="kecamatan" type="text" class="form-control" id="inputKecamatan" value="{{ $cabang_item->kecamatan }}">
-                                </div>
+
                                 <div class="form-group">
                                   <label for="inputKelurahan">Kelurahan</label>
                                   <input name="kelurahan" type="text" class="form-control" id="inputKelurahan" value="{{ $cabang_item->kelurahan }}">
@@ -87,10 +70,7 @@
                                   <label for="inputRW">RW</label>
                                   <input name="rw" type="text" class="form-control" id="inputRW" value="{{ $cabang_item->rw }}">
                                 </div>
-                                <div class="form-group">
-                                  <label for="inputRT">RT</label>
-                                  <input name="rt" type="text" class="form-control" id="inputRT" value="{{ $cabang_item->rt }}">
-                                </div>
+
                               </div><!-- /.box-body -->
                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                               <div class="modal-footer">
@@ -104,7 +84,7 @@
                       </div>
 
                       <!--Delete Modal -->
-                      <div id="deleteModal" class="modal fade" role="dialog">
+                      <div id="deleteModal{{ $index + 1 }}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
                           <div class="modal-content">
@@ -132,6 +112,7 @@
                           </div>
                         </div>
                       </div>
+                      </tr>
                       @endforeach
                     </tbody>
                     <tfoot>
@@ -139,10 +120,9 @@
                         <th>No</th>
                         <th>Nomor Registrasi</th>
                         <th>Nama</th>
-                        <th>Kecamatan</th>
+
                         <th>Kelurahan</th>
                         <th>RW</th>
-                        <th>RT</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -169,20 +149,12 @@
                       <input name="nama" type="text" class="form-control" id="inputNama" placeholder="masukkan nama bank sampah">
                     </div>
                     <div class="form-group">
-                      <label for="inputKecamatan">Kecamatan</label>
-                      <input name="kecamatan" type="text" class="form-control" id="inputKecamatan" placeholder="masukkan kecamatan">
-                    </div>
-                    <div class="form-group">
                       <label for="inputKelurahan">Kelurahan</label>
                       <input name="kelurahan" type="text" class="form-control" id="inputKelurahan" placeholder="masukkan kelurahan">
                     </div>
                     <div class="form-group">
                       <label for="inputRW">RW</label>
                       <input name="rw" type="text" class="form-control" id="inputRW" placeholder="masukkan rw">
-                    </div>
-                    <div class="form-group">
-                      <label for="inputRT">RT</label>
-                      <input name="rt" type="text" class="form-control" id="inputRT" placeholder="masukkan rt">
                     </div>
                   </div><!-- /.box-body -->
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -212,10 +184,6 @@
     <!-- page script -->
     <script>
       $(function () {
-        $('.sidebar-menu a').filter(function() {
-            return $(this).text() == $('.content-header h1').text();
-        }).closest('li').addClass('active')
-
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,

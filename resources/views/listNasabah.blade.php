@@ -24,6 +24,7 @@
                     <thead>
                       <tr>
                         <th>No</th>
+                        <th>No Induk</th>
                         <th>Nama</th>
                         <th>Bank Sampah</th>
                         <th></th>
@@ -34,23 +35,24 @@
                       @foreach ($nasabah as $index => $nasabah_item)
                         <tr>
                           <td>{{ $index + 1 }}</td>
+                          <td>{{ $nasabah_item->nomor_induk }}</td>
                           <td>{{ $nasabah_item->nama }}</td>
                           <td>{{ $current_cabang[$nasabah_item->id_cabang] }}</td>
                           <td class="tools">
                             <!-- Trigger the modal with a button -->
                             <a href="#">
-                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
+                            <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal{{ $index + 1 }}"></span>
                             </a>
                           </td>
                           <td class="tools">
                            <a href="#">
-                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal"></span>
+                            <span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteModal{{ $index + 1 }}"></span>
                             </a>
                           </td>
                         </tr>
 
                          <!--Edit Modal -->
-                      <div id="editModal" class="modal fade" role="dialog">
+                      <div id="editModal{{ $index + 1 }}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
                           <div class="modal-content">
@@ -80,7 +82,7 @@
                       </div>
 
                        <!--Delete Modal -->
-                      <div id="deleteModal" class="modal fade" role="dialog">
+                      <div id="deleteModal{{ $index + 1 }}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
                           <div class="modal-content">
@@ -113,6 +115,7 @@
                     <tfoot>
                       <tr>
                         <th>No</th>
+                        <th>No Induk</th>
                         <th>Nama</th>
                         <th>Bank Sampah</th>
                         <th></th>
@@ -125,7 +128,7 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Bank Sampah Baru</h3>
+                  <h3 class="box-title">Nasabah Baru</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form method="POST" action="{{ url('/nasabah') }}" role="form">
@@ -137,6 +140,10 @@
                         <option value="{{ $cabang_item->nomor_registrasi }}">{{ $cabang_item->nama }}</option>
                         @endforeach
                       </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputNama">Nomor Induk</label>
+                      <input name="nomor_induk" type="text" class="form-control" id="inputNama" placeholder="masukkan nomor induk nasabah">
                     </div>
                     <div class="form-group">
                       <label for="inputNama">Nama Nasabah</label>
