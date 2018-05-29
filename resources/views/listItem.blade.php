@@ -69,8 +69,8 @@
                               </div><!-- /.box-body -->
                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                               <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Edit</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Batal</button>
                               </div>
                             </form>
                             </div>
@@ -98,8 +98,8 @@
                                 <input name="nama" type="hidden" value="{{ $item_item->nama }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="box-footer">
-                                  <button type="submit" class="btn btn-danger">Hapus</button>
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                  <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                  <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Batal</button>
                                 </div>
                               </form>
                               
